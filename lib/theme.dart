@@ -16,7 +16,9 @@ final theme = ThemeData(
     seedColor: Colors.black,
     primary: Colors.black,
     secondary: const Color(0xFF5cb85c),
+    tertiary: const Color(0xFF818a91),
   ),
+  highlightColor: const Color(0xFF373a3c),
 );
 
 // ThemeData(

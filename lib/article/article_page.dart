@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:realworldflutterbloc/layout/base_scaffold.dart';
 
-class ArticleScreen extends StatelessWidget {
-  const ArticleScreen({super.key});
+class ArticlePage extends StatelessWidget {
+  const ArticlePage({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -13,8 +13,8 @@ class RealwordDemoApp extends StatelessWidget {
       title: 'Conduit',
       theme: theme,
       routes: {
-        '/': (context) => const HomeScreen(),
-        '/article': (context) => const ArticleScreen()
+        '/': (context) => const HomePage(),
+        '/article': (context) => const ArticlePage()
       },
     );
   }
