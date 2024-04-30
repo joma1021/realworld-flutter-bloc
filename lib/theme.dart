@@ -3,10 +3,25 @@ import 'package:google_fonts/google_fonts.dart';
 
 final theme = ThemeData(
   useMaterial3: true,
-  textTheme: const TextTheme(
-    displayLarge: TextStyle(
-        fontSize: 32, fontWeight: FontWeight.bold, color: Colors.black87),
-    bodyLarge: TextStyle(fontSize: 18, color: Colors.black87),
+  textTheme: GoogleFonts.titilliumWebTextTheme(
+    const TextTheme(
+      displayLarge: TextStyle(
+          fontSize: 32, fontWeight: FontWeight.bold, color: Colors.black87),
+      bodyLarge: TextStyle(fontSize: 18, color: Colors.black87),
+      bodyMedium: TextStyle(
+        fontSize: 16,
+        color: Color(0xFF818a91),
+      ),
+      bodySmall: TextStyle(
+        fontSize: 12,
+        color: Color(0xFF818a91),
+      ),
+      titleMedium: TextStyle(
+        fontSize: 22,
+        color: Colors.black87,
+        fontWeight: FontWeight.w700,
+      ),
+    ),
   ),
   appBarTheme: const AppBarTheme(
       color: Colors.white,

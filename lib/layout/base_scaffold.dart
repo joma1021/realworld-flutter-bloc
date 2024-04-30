@@ -30,7 +30,7 @@ class BaseScaffold extends StatelessWidget {
               style: TextStyle(
                 fontSize: 20,
                 color: Theme.of(context).colorScheme.secondary,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w900,
               ),
             ),
           ),
