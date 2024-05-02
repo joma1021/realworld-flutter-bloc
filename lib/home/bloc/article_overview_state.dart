@@ -8,12 +8,13 @@ sealed class ArticleOverviewState extends Equatable {
 final class ArticleOverviewLoading extends ArticleOverviewState {}
 
 final class ArticleOverviewLoaded extends ArticleOverviewState {
-  final List<Article> articles;
+  final ArticleOverview articleOverview;
+  final int page;
 
-  ArticleOverviewLoaded(this.articles);
+  ArticleOverviewLoaded(this.articleOverview, this.page);
 
   @override
-  List<Object> get props => [articles];
+  List<Object> get props => [articleOverview];
 }
 
 final class ArticleOverviewError extends ArticleOverviewState {}

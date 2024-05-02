@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:realworldflutterbloc/common/widgets/article_item.dart';
+import 'package:realworldflutterbloc/common/widgets/paginator.dart';
 import 'package:realworldflutterbloc/home/bloc/article_overview_bloc.dart';
 
 import 'package:realworldflutterbloc/layout/base_scaffold.dart';
@@ -14,7 +16,7 @@ class HomePage extends StatelessWidget {
     return BlocProvider(
       create: (context) =>
           ArticleOverviewBloc(articleRepository: ArticleRepository())
-            ..add(FetchArticleOverviewEvent()),
+            ..add(InitArticleOverviewEvent()),
       child: RepositoryProvider(
         create: (context) => ArticleRepository(),
         child: BaseScaffold(
@@ -55,18 +57,48 @@ class HomePage extends StatelessWidget {
                           ),
                         ArticleOverviewLoading() =>
                           const Center(child: CircularProgressIndicator()),
-                        ArticleOverviewError() => Text('Something went wrong!'),
-                        ArticleOverviewLoaded() => ListView.separated(
-                            itemCount: state.articles.length,
-                            separatorBuilder: (context, index) => Divider(
-                                  color: Theme.of(context).colorScheme.tertiary,
-                                  endIndent: 16,
-                                  indent: 16,
+                        ArticleOverviewError() =>
+                          const Text('Something went wrong!'),
+                        ArticleOverviewLoaded() => Column(
+                            children: [
+                              Expanded(
+                                child: ListView.separated(
+                                  itemCount:
+                                      state.articleOverview.articles.length,
+                                  separatorBuilder: (context, index) => Divider(
+                                    color:
+                                        Theme.of(context).colorScheme.tertiary,
+                                    endIndent: 16,
+                                    indent: 16,
+                                  ),
+                                  itemBuilder: (context, index) {
+                                    if (index + 1 ==
+                                        state.articleOverview.articles.length) {
+                                      return Column(
+                                        children: [
+                                          ArticleItem(
+                                              article: state.articleOverview
+                                                  .articles[index]),
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 16),
+                                            child: Paginator(
+                                              currentPage: state.page,
+                                              pageCount: state.articleOverview
+                                                  .articlesCount,
+                                            ),
+                                          ),
+                                        ],
+                                      );
+                                    }
+                                    return ArticleItem(
+                                        article: state
+                                            .articleOverview.articles[index]);
+                                  },
                                 ),
-                            itemBuilder: (context, index) {
-                              return ArticleItem(
-                                  article: state.articles[index]);
-                            })
+                              ),
+                            ],
+                          )
                       };
                     },
                   ),

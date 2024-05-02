@@ -7,7 +7,15 @@ sealed class ArticleOverviewEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class FetchArticleOverviewEvent extends ArticleOverviewEvent {
+class InitArticleOverviewEvent extends ArticleOverviewEvent {
   @override
   List<Object> get props => [];
+}
+
+class FetchArticleOverviewEvent extends ArticleOverviewEvent {
+  final int page;
+
+  const FetchArticleOverviewEvent(this.page);
+  @override
+  List<Object> get props => [page];
 }
