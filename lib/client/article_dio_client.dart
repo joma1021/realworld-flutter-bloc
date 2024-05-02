@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:realworldflutterbloc/models/article.dart';
+import 'package:realworldflutterbloc/models/article_overview.dart';
 
 class ArticleDioClient {
   final Dio _dio = Dio();
@@ -7,16 +8,17 @@ class ArticleDioClient {
 
   Future<List<Article>> getArticles(
       {int? page, String? token, String? filter}) async {
-    // Perform GET request to the endpoint "/users/<id>"
-    final offset = page != null ? (page - 1) * 10 : 0;
-    Response articlesData = await _dio
-        .get('$_baseUrl/articles', queryParameters: {'offset': offset});
+    try {
+      final offset = page != null ? (page - 1) * 10 : 0;
+      Response response = await _dio
+          .get('$_baseUrl/articles', queryParameters: {'offset': offset});
 
-    // Prints the raw data returned by the server
-    List<Article> articles = (articlesData as List)
-        .map((article) => Article.fromJson(article.data))
-        .toList();
+      final List<Article> articles =
+          ArticleOverview.fromJson(response.data).articles;
 
-    return articles;
+      return articles;
+    } catch (e) {
+      rethrow;
+    }
   }
 }

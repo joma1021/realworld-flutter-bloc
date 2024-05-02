@@ -8,7 +8,7 @@ class Author extends Equatable {
   final String image;
   final String username;
   final bool following;
-  final String bio;
+  final String? bio;
 
   const Author(this.image, this.username, this.following, this.bio);
 
