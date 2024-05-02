@@ -16,7 +16,7 @@ class Paginator extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: (pageCount / 10).round(),
+        itemCount: (pageCount / 10).round() + 1,
         itemBuilder: (context, index) => InkWell(
           onTap: () => context
               .read<ArticleOverviewBloc>()
